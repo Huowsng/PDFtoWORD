@@ -8,7 +8,7 @@ from .models import ConvertedFile
 import uuid
 from django.contrib.auth import login, authenticate
 from .models import LoginForm
-
+from .models import UserRegistrationForm
 
 
 
@@ -59,12 +59,30 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        
+        # Kiểm tra xem username và password có hợp lệ không
         user = authenticate(request, username=username, password=password)
+        
         if user is not None:
-            login(request, user)
-            return redirect('convert_form')  # Redirect to the 'convert_form' page upon successful login
+            if user.is_staff:
+                # Đây là tài khoản admin, chuyển hướng đến trang admin
+                login(request, user)
+                return redirect('admin:index')
+            else:
+                # Đây là tài khoản user, chuyển hướng đến trang convert_form
+                login(request, user)
+                return redirect('convert_form')
         else:
-            # Handle login failure, e.g., display an error message
+            # Xử lý trường hợp đăng nhập không thành công, ví dụ: hiển thị thông báo lỗi
             return render(request, 'login.html', {'error_message': 'Invalid credentials'})
     else:
         return render(request, 'login.html')
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'register.html', {'form': form})

@@ -74,11 +74,130 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .layout-hedaer{
+            position: relative;
+            height: 84px;
+            background: #fff;
+            z-index: 9;
+            box-shadow: 0 2px 3px rgba(0,0,0,.05);
+            border-bottom: 1px solid #eee;
+        }
+        nav {
+            display: block;
+        }
+        .layout-header .logo-wrapper {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .logo {
+            padding: 27px 24px 28px 27px;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: #505050;
+        }
+        .layout-header .page-title {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: 83px;
+            margin: auto;
+            max-width: 465px;
+        }
+        .layout-header .page-title h1 {
+            font-size: 26px;
+            line-height: 34px;
+            font-weight: 700;
+            text-align: center;
+            color: #313131
+        }
+        .layout-header .page-title h1 span.converter-icon {
+            transition: all 200ms;
+            width: 39px;
+            height: 39px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: inline-block;
+            margin-top: -2px;
+            margin-right: 15px;
+            vertical-align: top;
+            opacity: 1;
+        }
+        .l-pdf-to-word .layout-header h1 span.converter-icon {
+            background-image: url(data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczNCcgaGVpZ2h0PSczMycgZmlsbD0nbm9uZSc+PGRlZnMvPjxwYXRoIGZpbGw9JyMyOTgwQjknIGZpbGwtcnVsZT0nZXZlbm9kZCcgZD0nTTE3Ljg0IDEyLjRINC40NmEyLjc3IDIuNzcgMCAwMC0yLjc3IDIuNzZ2MTMuMzhhMi43NyAyLjc3IDAgMDAyLjc3IDIuNzdoMTMuMzhhMi43NyAyLjc3IDAgMDAyLjc3LTIuNzdWMTUuMTZhMi43NyAyLjc3IDAgMDAtMi43Ny0yLjc3ek00LjQ2IDEwLjdDMiAxMC43IDAgMTIuNyAwIDE1LjE2djEzLjM4QzAgMzEgMiAzMyA0LjQ2IDMzaDEzLjM4YzIuNDYgMCA0LjQ2LTIgNC40Ni00LjQ2VjE1LjE2YzAtMi40Ni0yLTQuNDYtNC40Ni00LjQ2SDQuNDZ6JyBjbGlwLXJ1bGU9J2V2ZW5vZGQnLz48cGF0aCBmaWxsPScjMjk4MEI5JyBmaWxsLXJ1bGU9J2V2ZW5vZGQnIGQ9J00xNS41MyAxLjdoMTMuMzhhMi43NyAyLjc3IDAgMDEyLjc3IDIuNzZ2MTMuMzhhMi43NyAyLjc3IDAgMDEtMi43NyAyLjc3aC01LjQ4djEuNjloNS40OGMyLjQ3IDAgNC40Ni0yIDQuNDYtNC40NlY0LjQ2YzAtMi40Ni0yLTQuNDYtNC40Ni00LjQ2SDE1LjUzYy0yLjQ2IDAtNC40NiAyLTQuNDYgNC40NnY1LjI2aDEuN1Y0LjQ2YTIuNzcgMi43NyAwIDAxMi43Ni0yLjc3eicgY2xpcC1ydWxlPSdldmVub2RkJy8+PHBhdGggZmlsbD0nIzI5ODBCOScgZmlsbC1ydWxlPSdldmVub2RkJyBkPSdNMTEuMTIgNC42YzAtMi41IDIuMDMtNC41MiA0LjUyLTQuNTJoMTMuMjJjMi41IDAgNC41MiAyLjAyIDQuNTIgNC41MnYxMy4yMmMwIDIuNS0yLjAyIDQuNTItNC41MiA0LjUyaC01LjM0di03Ljc3bC4xNy45NWMuMDQuMjIuMTUuNC4zLjU0YS45LjkgMCAwMC42LjIyaC4yOGMuMjMgMCAuNDItLjA3LjYtLjIuMTctLjE1LjI4LS4zMy4zMy0uNTRsMS43Ny04LjM2YS41LjUgMCAwMC0uMTItLjQ4LjU1LjU1IDAgMDAtLjQ2LS4yM2MtLjIgMC0uMzkuMDctLjU2LjJhLjgzLjgzIDAgMDAtLjMuNTFsLTEuMzMgNy40N3YuMDFoLS4wMmwtMS4zMy03LjQ0YS44Ny44NyAwIDAwLS4zMS0uNTQuODkuODkgMCAwMC0uNi0uMjFoLS4zNGEuODkuODkgMCAwMC0uNi4yMS45Ni45NiAwIDAwLS4zLjU0TDIwLjggMTBhNC41IDQuNSAwIDAwLTEuNzYtLjM3bC0uNDMtMi40MmEuODIuODIgMCAwMC0uMy0uNTMuODcuODcgMCAwMC0uNTktLjIxYy0uMiAwLS4zNS4wOC0uNDcuMjNhLjYyLjYyIDAgMDAtLjEyLjVsLjUxIDIuNDJoLTYuNTJWNC42em0xMC43NSA2LjA2Yy41Mi40Mi45NS45NyAxLjIzIDEuNTlsLS43NC00LjE2aC0uMDNsLS40NiAyLjU3ek01LjY4IDE3LjQyYzAtLjQ3LjM4LS44NS44NS0uODVoOS4xNWEuODUuODUgMCAxMTAgMS43SDYuNTNhLjg1Ljg1IDAgMDEtLjg1LS44NXpNNS42OCAyMS45MWMwLS40Ny4zOC0uODUuODUtLjg1aDkuMTVhLjg1Ljg1IDAgMDEwIDEuN0g2LjUzYS44NS44NSAwIDAxLS44NS0uODV6TTUuNjggMjYuNGMwLS40Ni4zOC0uODQuODUtLjg0aDkuMTVhLjg1Ljg1IDAgMTEwIDEuN0g2LjUzYS44NS44NSAwIDAxLS44NS0uODV6JyBjbGlwLXJ1bGU9J2V2ZW5vZGQnLz48L3N2Zz4=);
+        }
+        .layout-header .header-links {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            padding-top: 27px;
+        }
+        .layout-header .header-links .user-menu {
+            display: inline-block;
+        }
+        .layout-header .header-links .user-menu .menu-item {
+            transition: opacity 150ms;
+            vertical-align: middle;
+            margin-left: 30px;
+        }
+        .layout-header .header-links .user-menu a {
+            font-size: 14px;
+            line-height: 25px;
+        }
+        .btn.btn-outline {
+            border: 2px solid;
+            border-radius: 100px;
+            background-color: #fff;
+            transition: all 150ms linear!important;
+        }
+        .layout-header .header-links .user-menu .menu-item.sign-up {
+            font-size: 14px;
+            padding: 8px 22px;
+            vertical-align: middle;
+            margin-left: 30px; 
+            line-height: 25px;
+            color: #2980b9;
+            border-color: #2980b9!important;
+        }       
     </style>
 </head>
 <body>
+    <header class="layout-header">
+        <nav class="layout-header-nav">
+            <div class="logo-wrapper">
+                <a class="logo img-logo" href="/">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="brand-color" fill-rule="evenodd" clip-rule="evenodd" d="M0 3.58537C0 1.60522 1.57657 0 3.52136 0H13.5824C15.5272 0 17.1037 1.60522 17.1037 3.58537V13.3171L14.0854 10.2439V3.58537C14.0854 3.30249 13.8602 3.07317 13.5824 3.07317H3.52136C3.24353 3.07317 3.01831 3.30249 3.01831 3.58537V17.4146C3.01831 17.6975 3.24353 17.9268 3.52136 17.9268H8.55187H13.5824C13.8602 17.9268 14.0854 17.6975 14.0854 17.4146V14.9779L20 21H13.5824H8.55187H3.52136C1.57657 21 0 19.3948 0 17.4146V3.58537Z" fill="#E74C3C"></path>
+                    </svg>
+                    <span class="logo-text">PDF Converter</span>
+                    </a>
+            </div>
+            <div class="page-title">
+                <h1>                  
+                    <span class="converter-icon"></span>
+                    <span class="main-title js-main-title">PDF to Word Converter</span>
+                </h1>
+            </div>
+            <!-- <div class="header-links">
+                <div class="user-menu"> -->
+                    <!-- <a href="/a" class="menu-item profile-link show-auth">
+                    Account
+                    </a>
+                    <a href="/a/si" class="menu-item show-unauth">Sign In</a>
+                    <a id="SignUpHeader" href="/membership" class="menu-item show-unauth sign-up btn btn-outline brand-border brand-text">Sign Up</a>
+                </div>
+            </div> -->
+              
+        </nav>
+    </header>
     <div class="container">
-        <h1>PDF to DOCX Conversion</h1>
+       
         
         <form id="conversion-form" method="post" enctype="multipart/form-data">
           {% csrf_token %} 
