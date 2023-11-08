@@ -29,6 +29,8 @@ urlpatterns = [
     path('download/<str:pk>/', views.downloadpage, name='download'),
     path('home/', login_required(views.convert_form), name='convert_form'),
     path('register/', views.register, name='register'),
+    path('converted-files/admin/', views.converted_file_list_admin, name='converted_file_list_admin'),
+    path('converted-files/user/', views.converted_file_list_user, name='converted_file_list_user'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

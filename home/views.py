@@ -7,8 +7,10 @@ from pdf2docx import Converter
 from .models import ConvertedFile
 import uuid
 from django.contrib.auth import login, authenticate
-from .models import LoginForm
 from .models import UserRegistrationForm
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import user_passes_test
+
 
 
 
@@ -16,12 +18,13 @@ def generate_short_code():
     return str(uuid.uuid4())[:5]
 
 
+@csrf_protect
 @require_POST
 def pdftoword(request):
     file = request.FILES.get('pdf_file')
     if file and file.name.endswith('.pdf'): 
         short_code = generate_short_code()
-        converted_file = ConvertedFile(pdf_file=file, short_code=short_code)
+        converted_file = ConvertedFile(pdf_file=file, short_code=short_code, user=request.user)
         converted_file.save()
 
 
@@ -42,9 +45,18 @@ def pdftoword(request):
             return HttpResponse('Conversion failed or file not found', status=500)
     else:
         return HttpResponse('Invalid PDF file provided', status=400)
-
 def convert_form(request):
-    return render(request, 'index.html')
+    user = request.user if request.user.is_authenticated else None
+    return render(request, 'index.html', {'user': user})
+
+
+# def converted_file_list(request):
+#     converted_files = ConvertedFile.objects.all()
+#     return render(request, 'converted_file_list.html', {'converted_files': converted_files})
+@user_passes_test(lambda u: u.is_superuser, login_url='/login/')  # Only allow admins
+def converted_file_list_admin(request):
+    converted_files = ConvertedFile.objects.all()
+    return render(request, 'converted_file_list.html', {'converted_files': converted_files})
 
 def downloadpage(request, pk):
     converted_file = ConvertedFile.objects.get(short_code=pk)
@@ -86,3 +98,11 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
+def converted_file_list_admin(request):
+    converted_files = ConvertedFile.objects.all()
+    return render(request, 'converted_file_list.html', {'converted_files': converted_files})
+
+def converted_file_list_user(request):
+    converted_files = ConvertedFile.objects.filter(user=request.user)
+    return render(request, 'converted_file_list.html', {'converted_files': converted_files})
+
